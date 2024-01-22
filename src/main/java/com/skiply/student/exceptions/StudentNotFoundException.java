@@ -1,4 +1,4 @@
-package com.student.fees.management.skiply.exceptions;
+package com.skiply.student.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

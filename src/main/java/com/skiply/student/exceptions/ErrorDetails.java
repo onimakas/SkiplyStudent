@@ -1,4 +1,4 @@
-package com.student.fees.management.skiply.exceptions;
+package com.skiply.student.exceptions;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
