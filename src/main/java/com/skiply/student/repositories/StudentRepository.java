@@ -11,5 +11,4 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     boolean existsByStudentFirstNameAndStudentLastNameAndStudentDobAndParentMobileNumber(String firstName, String lastName, LocalDate dob, String mobileNumber);
 
-
 }

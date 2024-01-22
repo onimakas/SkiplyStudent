@@ -20,7 +20,6 @@ import com.skiply.student.entities.Student;
 @RestController
 @RequestMapping("api/v1/students")
 public class StudentController {
-
     private final StudentService studentService;
 
     @Autowired
@@ -50,8 +49,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createStudent(@RequestBody @Valid Student student, BindingResult bindingResult)
-    {  try {
+    public ResponseEntity<?> createStudent(@RequestBody @Valid Student student, BindingResult bindingResult) {
+        try {
             if (bindingResult.hasErrors()) {
                 throw new StudentException(getValidationErrors(bindingResult));
             }
@@ -73,7 +72,6 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
-
 
     @DeleteMapping("/{studentId}")
     public ResponseEntity<?> deleteStudentById(@PathVariable String studentId) {

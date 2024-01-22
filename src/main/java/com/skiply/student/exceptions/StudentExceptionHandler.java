@@ -26,22 +26,16 @@ public class StudentExceptionHandler{
     @ExceptionHandler(StudentNotFoundException.class)
     public ResponseEntity<String> handleStudentNotFoundException(StudentNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-
-
     }
 
     @ExceptionHandler(DuplicateStudentException.class)
     public ResponseEntity<String> handleDuplicateStudentException(DuplicateStudentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-
-
     }
 
     @ExceptionHandler(StudentException.class)
     public ResponseEntity<String> handleStudentException(StudentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-
-
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -64,6 +58,5 @@ public class StudentExceptionHandler{
 
         return validationErrors;
     }
-
 
 }
