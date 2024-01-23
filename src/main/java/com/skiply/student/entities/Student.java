@@ -1,6 +1,7 @@
 package com.skiply.student.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -33,14 +34,15 @@ public class Student {
     private LocalDate studentDob;
 
     @NotBlank(message = "Grade cannot be empty")
-
     @Pattern(regexp = "^(?:PREKG|FS[12]|[1-9]|1[0-2]|YEAR [1-9]|YEAR 1[0-3])(?: [A-Z])?$", message = "Invalid grade")
     private String studentGrade;
 
     @Email(message = "Invalid parent email")
+    @NotNull
     private String parentEmail;
 
     @Pattern(regexp = "^\\+\\d{12}$", message = "Invalid mobile number")
+    @NotBlank
     private String parentMobileNumber;
 
     @NotBlank(message = "School ID cannot be empty")

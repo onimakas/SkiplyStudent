@@ -18,24 +18,27 @@ import java.util.List;
 public class StudentExceptionHandler{
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllExceptions(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
-
+    public ResponseEntity<ErrorDetails> handleAllExceptions(Exception ex) {
+        ErrorDetails error = new ErrorDetails(ex.getMessage(),ex.toString());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
     @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<String> handleStudentNotFoundException(StudentNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    public ResponseEntity<ErrorDetails> handleStudentNotFoundException(StudentNotFoundException ex) {
+        ErrorDetails error = new ErrorDetails(ex.getMessage(),ex.toString());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     @ExceptionHandler(DuplicateStudentException.class)
-    public ResponseEntity<String> handleDuplicateStudentException(DuplicateStudentException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    public ResponseEntity<ErrorDetails> handleDuplicateStudentException(DuplicateStudentException ex) {
+        ErrorDetails error = new ErrorDetails(ex.getMessage(),ex.toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(StudentException.class)
-    public ResponseEntity<String> handleStudentException(StudentException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    public ResponseEntity<ErrorDetails> handleStudentException(StudentException ex) {
+        ErrorDetails error = new ErrorDetails(ex.getMessage(),ex.toString());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

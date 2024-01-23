@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class StudentController {
             List<Student> students = studentService.getAllStudents();
             return ResponseEntity.ok(students);
         } catch (StudentException e) {
-            ErrorDetails error = new ErrorDetails(LocalDateTime.now(), "Failed to retrieve students", e.getMessage());
+            ErrorDetails error = new ErrorDetails("Failed to retrieve students", e.toString());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
     }
@@ -43,7 +42,7 @@ public class StudentController {
             Optional<Student> student = studentService.getStudentById(studentId);
             return ResponseEntity.ok(student);
         } catch (StudentNotFoundException e) {
-            ErrorDetails error = new ErrorDetails(LocalDateTime.now(), "Failed to retrieve student with Id: "+studentId, e.getMessage());
+            ErrorDetails error = new ErrorDetails(e.getMessage(), e.toString());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
         }
     }
@@ -57,7 +56,7 @@ public class StudentController {
             Student createdStudent = studentService.createStudent(student);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
         } catch (StudentException e) {
-            ErrorDetails error = new ErrorDetails(LocalDateTime.now(), "Failed to create student", e.getMessage());
+            ErrorDetails error = new ErrorDetails("Failed to create student", e.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
@@ -68,7 +67,7 @@ public class StudentController {
             Student student = studentService.updateStudent(studentId, updatedStudent);
             return ResponseEntity.ok(student);
         } catch (StudentException e) {
-            ErrorDetails error = new ErrorDetails(LocalDateTime.now(), "Failed to update student with Id: "+studentId, e.getMessage());
+            ErrorDetails error = new ErrorDetails("Failed to update student with Id: "+studentId, e.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
@@ -79,7 +78,7 @@ public class StudentController {
             studentService.deleteStudent(studentId);
             return ResponseEntity.ok().build();
         } catch (StudentException e) {
-            ErrorDetails error = new ErrorDetails(LocalDateTime.now(), "Failed  to delete student", e.getMessage());
+            ErrorDetails error = new ErrorDetails("Failed  to delete student with StudentId"+studentId, e.toString());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
         }
     }
