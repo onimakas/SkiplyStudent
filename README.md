@@ -21,11 +21,9 @@ http://localhost:8080/swagger-ui/index.html#/
 
 Once the application is running, you can access the following endpoints:
 
-GET[/students] (http://localhost:8080/api/v1/students) - Retrieves a list of all students.
-GET[/students/{id}] (http://localhost:8080/api/v1/students/{id}) - Retrieves a specific student by ID.
-POST[/students] (http://localhost:8080/api/v1/students) - Creates a new student.
-PATCH[/students/{id}] (http://localhost:8080/api/v1/students/{id}) - Updates an existing student.
-DELETE[/students/{id}] (http://localhost:8080/api/v1/students/{id}) - Deletes a student by ID.
-
-
+GET Request (http://localhost:8080/api/v1/students) - Retrieves a list of all students.
+GET Request (http://localhost:8080/api/v1/students/{id}) - Retrieves a specific student by ID.
+POST Request (http://localhost:8080/api/v1/students) - Creates a new student.
+PATCH Request (http://localhost:8080/api/v1/students/{id}) - Updates an existing student.
+DELETE Request (http://localhost:8080/api/v1/students/{id}) - Deletes a student by ID.
 
