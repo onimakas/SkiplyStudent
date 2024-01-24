@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
+
 /**
  * The implementation of the StudentService interface.
  * Provides methods to manage student data.
@@ -36,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public List<Student> getAllStudents() {
-        return studentRepository.findAllByDeletedAtIsNull();
+        return studentRepository.findAllByIsDeletedIsFalse();
     }
 
     /**
@@ -48,7 +49,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public Optional<Student> getStudentById(String studentId) {
-        return Optional.ofNullable(studentRepository.findByStudentIdAndDeletedAtIsNull(studentId)
+        return Optional.ofNullable(studentRepository.findByStudentIdAndIsDeletedIsFalse(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with StudentId :"+studentId)));
     }
 
@@ -61,7 +62,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public Student createStudent(Student student) {
-        if (studentRepository.existsByStudentFirstNameAndStudentLastNameAndStudentDobAndParentMobileNumberAndDeletedAtIsNull(student.getStudentFirstName(), student.getStudentLastName(),student.getStudentDob(), student.getParentMobileNumber())) {
+        if (studentRepository.existsByStudentFirstNameAndStudentLastNameAndStudentDobAndParentMobileNumberAndIsDeletedIsFalse(student.getStudentFirstName(), student.getStudentLastName(),student.getStudentDob(), student.getParentMobileNumber())) {
             throw new DuplicateStudentException("Duplicate Student Found with same first name,last name, dob and parent mobile number");
         }
         student.setDeletedAt(null);
@@ -79,7 +80,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student updateStudent(String studentId, Student updatedStudent) {
 
-        Student student = studentRepository.findByStudentIdAndDeletedAtIsNull(studentId)
+        Student student = studentRepository.findByStudentIdAndIsDeletedIsFalse(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + studentId));
         if(student!=null){
             updatedStudent.setStudentId(studentId);
@@ -100,7 +101,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(String studentId) {
         // Soft delete by marking isDeleted as true and setting deletedAt timestamp
-        Student student = studentRepository.findByStudentIdAndDeletedAtIsNull(studentId)
+        Student student = studentRepository.findByStudentIdAndIsDeletedIsFalse(studentId)
                 .orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + studentId));
             student.setIsDeleted(true);
             student.setDeletedAt(Instant.now());

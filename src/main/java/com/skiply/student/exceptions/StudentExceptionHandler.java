@@ -13,7 +13,6 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestControllerAdvice
 public class StudentExceptionHandler{
 
@@ -61,5 +60,4 @@ public class StudentExceptionHandler{
 
         return validationErrors;
     }
-
 }
