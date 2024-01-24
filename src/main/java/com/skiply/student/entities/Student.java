@@ -34,7 +34,7 @@ public class Student {
     private LocalDate studentDob;
 
     @NotBlank(message = "Grade cannot be empty")
-    @Pattern(regexp = "^(?:PREKG|FS[12]|[1-9]|1[0-2]|YEAR [1-9]|YEAR 1[0-3])(?: [A-Z])?$", message = "Invalid grade")
+    @Pattern(regexp = "^(?:PREKG|FS[12]|[1-9]|1[0-2]|YEAR [1-9]|YEAR 1[0-3])$", message = "Invalid grade")
     private String studentGrade;
 
     @Email(message = "Invalid parent email")
