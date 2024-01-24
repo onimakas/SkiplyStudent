@@ -15,8 +15,10 @@ To run this project, make sure you have the following prerequisites installed on
 2. Install IntelliJ IDEA(latest version)
 3. Install Postman.
 4. `git clone https://github.com/onimakas/SkiplyStudent.git` or download it into zip and unzip it to your local.
-5. Open project in IntelliJ IDEA and run locally.
-6. The application should now be up and running on http://localhost:8080/api/v1/students
+5. Open project in IntelliJ IDEA.
+6. Enable Lombok Annotation processing in Intellij IDEA while building the application.
+7. Run the application.
+8. The application should now be up and running on http://localhost:8080/api/v1/students
 
 ## API documentation
 The Open API documentation links are as follows:  
